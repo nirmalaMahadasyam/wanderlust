@@ -27,9 +27,10 @@ pipeline {
         }
         stage("sonar Quality Gate Scan")
         {
-            steps{
-                timeout(time:2 ,unit:"minitues")
-                waitForQualityGate abortionpipeline:false
+             steps {
+              timeout(time: 30, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+              }
             }
         }
         stage("trivy file systemscan"){
